@@ -105,9 +105,9 @@
 </script>
 
 {#if display}
-	<BaseItem id={_id} componentCssProps={$userTheme.search && $userTheme.search.results}>
+	<BaseItem id={_id} >
 
-		<div slot="fields" class="flex-col space-y-1">
+		<div slot="fields" class="flex-col space-y-0">
 		{#each meta as { value, key, type, placeholder, innerHtml, highlight, metadata, rows, color} (key)}
 				{#if !isEmpty(value) || (!readonly && metadata) }
 					<Entry {readonly} {required} bind:value {key} {type} {placeholder} {innerHtml} {highlight} {metadata} {rows} {color} />
@@ -115,15 +115,15 @@
 		{/each}
 		</div>
 
-		<div slot="buttons">
+		<div slot="buttons" class="pt-4">
 
-			<button on:click={http.fetchBlob(url)} {...btnAttrs}>
+			<button on:click={http.fetchBlob(url)} {...btnAttrs} style={$envJson.primary}>
 				<svg {...svgAttrs}><path d="M.2 10a11 11 0 0 1 19.6 0A11 11 0 0 1 .2 10zm9.8 4a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm0-2a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/></svg>
 				<span>CONSULTER</span>
 			</button>
 
 			{#if $user.role === 'admin'}
-			<button on:click={handleDelete} {...btnAttrs}>
+			<button on:click={handleDelete} {...btnAttrs} style={$envJson.primary}>
 				<svg {...svgAttrs}><path d="M6 2l2-2h4l2 2h4v2H2V2h4zM3 6h14l-1 14H4L3 6zm5 2v10h1V8H8zm3 0v10h1V8h-1z"/></svg>
 				<span>SUPPRIMER</span>
 			</button>
@@ -168,14 +168,21 @@
 		@apply mt-1;
 		@apply px-4;
 		@apply py-2;
-		@apply bg-gray-300;
-		@apply text-gray-800;
+		@apply text-white;
 		@apply font-bold;
 		@apply rounded;
 		@apply inline-flex;
 		@apply items-center;
+		@apply mx-0;
+		background-color: var(--primary);
+		
+		
+		
 	}
-	div[slot='fields'] :global(.entry-title) {
-		color: blue;
+	
+	button:hover {
+		@apply underline;
+		background-color: var(--primary);
+		
 	}
 </style>

@@ -3,6 +3,17 @@
   "accept": ".pdf",
   "inputs": [
     {
+      "key": "tag",
+      "type": "keyword",
+      "placeholder": "Ajoutez un tag",
+      "value": [],
+      "innerHtml": "<b>Tag :</b>",
+      "highlight": false,
+      "metadata": true,
+      "canBeEmpty": true,
+      "color": "#003300"
+    },
+    {
       "key": "title",
       "type": "textarea",
       "placeholder": "NA",
@@ -13,16 +24,16 @@
       "canBeEmpty": true
     },
     {
-      "key": "content",
-      "type": "textarea",
+      "key": "date",
+      "type": "date",
       "placeholder": "NA",
       "value": "",
-      "innerHtml": "<b>Contenu :</b>",
-      "highlight":  true,
-      "metadata": false,
-      "rows":4,
-      "canBeEmpty": false
+      "innerHtml": "Modifié le ",
+      "highlight": false,
+      "metadata": true,
+      "canBeEmpty": true
     },
+    
     {
       "key": "author",
       "type": "textarea",
@@ -35,26 +46,18 @@
 
     },
     {
-      "key": "date",
-      "type": "date",
+      "key": "content",
+      "type": "textarea",
       "placeholder": "NA",
       "value": "",
-      "innerHtml": "<b>Date :</b>",
-      "highlight": false,
-      "metadata": true,
-      "canBeEmpty": true
-    },
-    {
-      "key": "tag",
-      "type": "keyword",
-      "placeholder": "Ajoutez un tag",
-      "value": [],
-      "innerHtml": "<b>Tag :</b>",
-      "highlight": false,
-      "metadata": true,
-      "canBeEmpty": true,
-      "color": "#003300"
+      "innerHtml": "<b>Contenu :</b>",
+      "highlight":  true,
+      "metadata": false,
+      "rows":4,
+      "canBeEmpty": false
     }
+    
+    
   ]
 
 }

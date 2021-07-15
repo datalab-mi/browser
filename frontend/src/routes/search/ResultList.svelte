@@ -55,7 +55,7 @@
 			});
 	}
 </script>
-
+<div class="px-48 " >
 {#await $promiseSearch}
 	<p>...Attente de la requête</p>
 {:then result}
@@ -67,31 +67,35 @@
 		<div class="result-list">
 		{#each items as item (item.key)}
 			{#if  item._id === "bar"}
-				<section class="bar rounded-sm p-2 sm:p-4">
+				<section class="bar">
 					<p>{@html message}</p>
 				</section>
 			{:else}
-				<ResultItem  {... ( ({ _id, _source, _score, highlight }) => ({ _id, _source, _score, highlight, canBeChange }) )(item) } />
+				<ResultItem  {... ( ({ _id, _source, _score, highlight }) => ({ _id, _source, _score, highlight, canBeChange }) )(item) }/>
 			{/if}
 		{/each}
+		</div>
+	{:else}
+		<div class='bg-white p-4 pb-48 shadow'>
+			
+			<img src='./user/noresult.PNG' class="float-right">
+			<h2 class="text-3xl font-bold my-4">Aucun résultat</h2>
+			<p class="float-left text-xl ">Malheureusement aucun résultat n'est associé à votre recherche. Essayer de changer les mots-clés que vous avez utilisé.</p>
+			
+			
 		</div>
 	{/if}
 {:else}
 	<p>... Récuperation de la configuration</p>
 {/if}
 
-
+</div>
 <style>
-	.result-list {
-		@apply w-full;
-		@apply rounded;
-		border: 1px solid #aaa;
-		min-height: 200px;
-	}
-	.bar {
-		@apply w-full;
-		@apply rounded;
-		border: 1px solid #aaa;
-		background: #ffffb3
-	}
+img{
+	max-width: 20%;
+	margin-top: 0;
+	
+	
+}
+
 </style>

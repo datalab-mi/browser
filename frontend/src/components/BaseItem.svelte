@@ -5,7 +5,7 @@
 	export let componentCssProps = undefined
 </script>
 
-<section {id} use:cssProps={componentCssProps} class="base-item rounded-sm p-2 sm:p-4">
+<section {id} use:cssProps={componentCssProps} class="base-item rounded-sm p-2 sm:p-4 bg-white shadow my-10">
 	<slot name="fields" />
 
 	<div class="flex justify-between">
@@ -15,7 +15,4 @@
 </section>
 
 <style>
-	.base-item {
-		border: 1px solid #aaa;
-	}
 </style>
