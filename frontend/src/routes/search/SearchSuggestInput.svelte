@@ -79,7 +79,7 @@
 		<AutoComplete
 			{placeholder}
 			{inputId}
-			inputClassName="bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal"
+			inputClassName="bg-white focus:outline-none py-4 block w-full "
 			{searchFunction}
 			{keywordsFunction}
 			{labelFieldName}

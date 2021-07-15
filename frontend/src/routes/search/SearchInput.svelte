@@ -17,6 +17,6 @@
   <div class={style}>
     <label> {@html innerHtml}
       <input {type} {value} {placeholder} on:input={handleInput}
-        class="bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal">
+        class="bg-white focus:outline-none focus:shadow-outline border border-gray-300 appearance-none leading-normal">
     </label>
   </div>

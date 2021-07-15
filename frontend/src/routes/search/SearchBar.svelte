@@ -11,76 +11,55 @@
 	import { flatten, format2ES, search } from '../../components/utils.js';
 
 	let body
+	let notes
 	function handleSearch() {
 		body = format2ES($itemJson, flatten($searchJson, 2).filter(x => x.type !== "button"), $envJson.index_name)
 		$promiseSearch = search(body)
 	}
+
 </script>
-
-<div class='search-bar' on:keyup={e => e.key === 'Enter' && handleSearch()}
-	use:cssProps={$userTheme.search && $userTheme.search.criteria}>
-
+<div class="background" >
+<div id="search" class='search flex flex-col place-items-center ' style="background-image:url('./user/notes.png')" on:keyup={e => e.key === 'Enter' && handleSearch()} >
+	<div class="barback flex flex-col w-1/3 px-4"  >
+<div>
+	<div class='text-3xl text-white left-0 my-8'><b class="border-b-4 pb-4"> Rechercher</b> un rapport  <span class="uppercase">{$envJson.index_name}</span></div>
+</div>
 {#if $searchJson.length > 0}
 
 	<!-- recherche basique, première ligne du tableau -->
-	<div class="flex flex-row space-x-3">
+	<div class="flex flex-row space-x-0 gap-0 justify-between bg-white w-full  my-8 h-10">
+		
 		{#each $searchJson[0] as { fields, value, type, placeholder, innerHtml, style, color, suggest }, j}
 			{#if type == "button"}
-				<div class="flex-none my-auto" >
-					<button on:click={handleSearch} class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-6 rounded inline-flex items-center itemJsons-center">
-						<svg class="fill-current w-4 h-4 sm:mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"/></svg>
-						<span class="hidden sm:inline">{innerHtml || "Rechercher"}</span>
+				<div class="flex-none my-auto bg-white h-8" >
+					<button on:click={handleSearch} class="bg-white hover:bg-white text-gray-800">
+						<svg class="fill-blue-600 w-6 h-6 sm:mr-2 pt-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"/></svg>
 					</button>
 				</div>
 			{:else if type === 'keyword' }
 				<SearchKeywordInput bind:value={value} {fields} {placeholder} {color} />
 			{:else if type === 'search' && suggest }
-				<SearchSuggestInput bind:value={value} {placeholder} {innerHtml} {fields} style="flex-1 my-auto {style}" />
+				<SearchSuggestInput bind:value={value} {placeholder} {innerHtml} {fields} style="w-2/4  " />
 			{:else }
-				<SearchInput bind:value {type} {placeholder} {innerHtml} style="flex-1 my-auto {style}" />
+				<SearchInput bind:value {type} {placeholder} {innerHtml} style="" />
 			{/if}
 		{/each}
+		
 	</div>
-
-	<!-- recherche avancée, le reste du tableau dans un accordion -->
-	{#if $searchJson.length > 1}
-		<Accordion containerClass="mt-4">
-			<AccordionItem title="Recherche avancée" buttonStyle="padding-left: 0">
-				<div slot="content" class="flex-col space-y-4">
-					{#each $searchJson.slice(1) as row, i}
-							<div class="flex flex-col sm:flex-row space-x-0 sm:space-x-3 space-y-2 sm:space-y-0">
-								{#each row as { fields, value, type, placeholder, innerHtml, style, color, suggest }, j}
-									{#if type === 'keyword' }
-										<SearchKeywordInput bind:value={value} {fields} {placeholder} {color} {style} />
-									{:else if type === 'search' && suggest }
-										<SearchSuggestInput bind:value={value} {placeholder} {innerHtml} {style} />
-									{:else }
-										<SearchInput bind:value={value} {type} {placeholder} {innerHtml} {style} />
-									{/if}
-								{/each}
-							</div>
-					{/each}
-				</div>
-			</AccordionItem>
-		</Accordion>
-	{/if}
-
-{:else}
-	<p>...Attente de la config</p>
 {/if}
-
+</div>
+</div>
 </div>
 
 <style>
-	.search-bar {
-		width: 100%;
-		border: 1px solid #aaa;
-		border-radius: 4px;
-		padding: 1em;
-		margin: 0 0 1em 0;
-		background-color: var(--bg-color);
+	.search{
+		background-size: 22%;
+		background-repeat: repeat;
 	}
-	.search-bar :global(.suggestion .autocomplete) {
-		@apply min-w-0;
+	.background{
+		background-color: var(--primary);
+	}
+	.barback{
+		background-color: var(--primary);
 	}
 </style>
