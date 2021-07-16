@@ -55,7 +55,7 @@
 			});
 	}
 </script>
-
+<div class="resList">
 {#await $promiseSearch}
 	<p>...Attente de la requête</p>
 {:then result}
@@ -80,7 +80,7 @@
 	<p>... Récuperation de la configuration</p>
 {/if}
 
-
+</div>
 <style>
 	.result-list {
 		@apply w-full;
@@ -93,5 +93,9 @@
 		@apply rounded;
 		border: 1px solid #aaa;
 		background: #ffffb3
+	}
+	.resList{
+		width: 85%;
+		float:left;
 	}
 </style>

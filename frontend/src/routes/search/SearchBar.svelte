@@ -73,12 +73,13 @@
 
 <style>
 	.search-bar {
-		width: 100%;
+		width: 85%;
 		border: 1px solid #aaa;
 		border-radius: 4px;
 		padding: 1em;
 		margin: 0 0 1em 0;
 		background-color: var(--bg-color);
+		float:left;
 	}
 	.search-bar :global(.suggestion .autocomplete) {
 		@apply min-w-0;

@@ -10,6 +10,7 @@
 	import { flatten, format2ES, search } from '../../components/utils.js';
 	import SearchBar from './SearchBar.svelte';
 	import ResultList from './ResultList.svelte';
+	import Aside from './aside.svelte';
 
 	let body
 	onMount(async () => {
@@ -21,6 +22,6 @@
 	});
 
 </script>
-
+<Aside/>
 <SearchBar/>
 <ResultList/>
