@@ -40,12 +40,14 @@
 	[aria-current]::after {
 		content: '';
 		height: 3px;
-		background-color: rgb(255,62,0);
+		background-color:var(--primary);
 		@apply block;
 		@apply absolute;
 		@apply bottom-0;
 		@apply left-0;
 		@apply w-full;
+		@apply font-bold;
+		
 	}
 
 	.navlink {
@@ -56,25 +58,28 @@
 		@apply font-normal;
 	}
 
+	.connect{
+		background-color:var(--primary)
+	}
 	.artifact {
 	display: none;
 }
 </style>
 
-<nav use:cssProps={$userTheme.nav}>
+<nav use:cssProps={$userTheme.nav} class="bg-white">
 	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-		<div class="flex">
+		<div class="flex ">
 			<div class:hidden={!logo} class="flex-shrink-0">
-				<a href="."><img class="block h-8 sm:h-20 w-8 sm:w-20" src={logo} alt="logo"></a>
+				<a href="."><img class="block h-8 sm:h-20 w-8 sm:w-20 m-1" src={logo} alt="logo"></a>
 			</div>
-			<div class="flex-1">
-				<div class="flex flex-col">
-					<div class="hidden sm:flex ml-2 font-bold text-2xl">{$envJson.navTitle}</div>
-					<div class="flex items-center justify-between h-10">
+			<div class="flex-1 align-center">
+				<div class="flex flex-row my-6">
+					<div class=" align-center mx-3 font-bold text-2xl ">{$envJson.navTitle}</div>
+					<div class="flex items-center justify-between h-10 ">
 						<div class="flex items-center">
 							{#if links.length}
-								<div class="hidden md:block">
-									<div class="ml-2 flex items-baseline space-x-1 content-center">
+								<div class="hidden md:block ">
+									<div class="ml-5 flex items-baseline space-x-1 content-center">
 										{#each links as link}
 											{#if link.href === segment}
 												<a href={link.href} class="navlink hover:bg-gray-200" aria-current="page">{link.text}</a>
@@ -84,13 +89,13 @@
 										{/each}
 									</div>
 								</div>
-								<div class="ml-2 flex md:hidden">
+								<div class="ml-2 md:hidden ">
 									<!-- Mobile menu button -->
-									<button on:click={nav.toggle} class="inline-flex items-center justify-center p-2 rounded-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" aria-expanded={$nav || undefined}>
+									<button on:click={nav.toggle} class=" p-2 rounded-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" aria-expanded={$nav || undefined}>
 										<span class="sr-only">Open main menu</span>
 										<!-- Icon when menu is closed. -->
-										<svg class:block={!$nav} class:hidden={$nav} class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-											<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+										<svg class:block={!$nav} class:hidden={$nav} class="h-6 w-6 " xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+											<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /> 
 										</svg>
 										<!-- Icon when menu is open. -->
 										<svg class:block={$nav} class:hidden={!$nav} class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
@@ -100,13 +105,14 @@
 								</div>
 							{/if}
 						</div>
-						<div class="block">
-							<div class="ml-2 flex items-center md:ml-6">
+						<div class="absolute right-0">
+							<div class="ml-2 ">
 								<!-- Profile dropdown -->
-								<div class="ml-3 relative">
+								<div class="connect mr-4  p-2 rounded-lg">
 									<div>
-										<button on:click={authClicked} class="max-w-xs rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" id="user-menu" aria-haspopup="true">
-											<svg class="h-8 w-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M5 5a5 5 0 0 1 10 0v2A5 5 0 0 1 5 7V5zM0 16.68A19.9 19.9 0 0 1 10 14c3.64 0 7.06.97 10 2.68V20H0v-3.32z"/></svg>
+										<button on:click={authClicked} class="text-white" color='white' id="user-menu" aria-haspopup="true">
+											<svg class="h-4 w-4 float-left m-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path d="M5 5a5 5 0 0 1 10 0v2A5 5 0 0 1 5 7V5zM0 16.68A19.9 19.9 0 0 1 10 14c3.64 0 7.06.97 10 2.68V20H0v-3.32z"/></svg>
+										Se connecter
 										</button>
 									</div>
 								</div>
